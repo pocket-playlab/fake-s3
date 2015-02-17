@@ -20,4 +20,11 @@ class AwsSdkCommandsTest < Test::Unit::TestCase
 
     assert_equal 2, bucket.objects.count
   end
+
+  def test_multipart_upload
+    bucket = @s3.buckets["test_multipart_upload"]
+    object = bucket.objects["key1"]
+    object.write("thisisaverybigfile", :multipart_threshold => 5)
+    assert object.exists?
+  end
 end
