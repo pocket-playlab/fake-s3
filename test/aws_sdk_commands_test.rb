@@ -26,5 +26,6 @@ class AwsSdkCommandsTest < Test::Unit::TestCase
     object = bucket.objects["key1"]
     object.write("thisisaverybigfile", :multipart_threshold => 5)
     assert object.exists?
+    assert_equal "thisisaverybigfile", object.read
   end
 end
